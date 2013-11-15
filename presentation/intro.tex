@@ -7,9 +7,12 @@
 \usepackage{bytefield}
 \usetikzlibrary{arrows,shapes}
 
+\newcommand{\mach}[1]{\texttt{\textbf{#1}}}
+
 \begin{document}
-\title{J1c }   
-\author{James Bowman} 
+\title{J1c}   
+\author{James Bowmans} 
+\institute{Excamera Labs} 
 \date{\today} 
 
 \frame{\titlepage} 
@@ -19,13 +22,108 @@
 \tikzstyle{process}=[shape=circle, text centered, text width=1.7cm, draw,minimum size=2em]
 \everymath{\displaystyle}
 
-% in the beginning... PDP1 CPU->display
-% display list: KLUGE01.JPG
+\begin{imageframe}{j1timing}
+  {\bf\Huge J1}
+\end{imageframe}
 
 \begin{frame}
 \begin{itemize}
-   \item Cornerstone of civilization
-   \item Bit of a mess
+   \item Open source (BSD license)
+   \item 200 lines of Verilog
+   \item Targeted at FPGA
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+   \item data stack, call/return stack
+   \item single cycle execution
+   \item explicit instruction coding
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+   \item 16-bit instructions, 16-bit data
+   \item stacks are 16 levels deep
+   \item Von Neumann architecture
+   \item IO instructions
+\end{itemize}
+\end{frame}
+
+\begin{imageframe}{1960s-photo-computer-room.png}
+  {\bf\Huge Programming model}
+\end{imageframe}
+
+\begin{frame}
+\begin{itemize}
+   \item ANS Forth
+   \item call+return is 1 word and 1 cycle, so \textit{factor}
+   \item code usage is logarithmic
+\end{itemize}
+\end{frame}
+
+\begin{imageframe}{pyramid}
+  {instructions $\rightarrow$ ANS Forth $\rightarrow$ application}
+\end{imageframe}
+
+\begin{imageframe}{6502}
+  {\bf\Huge J1c}
+\end{imageframe}
+
+\begin{frame}
+\begin{itemize}
+   \item ASIC proven
+   \item improved instruction encoding
+   \item parameterized for data width 8-32, stack size
+   \item Async reset, DFT
+   \item Harvard architecture, RAM and RAMless
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+   \item Cross-compiler based on \mach{gforth}
+   \item $<$1s compilation typical
+   \item produces ROM image
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+   \item FPGA-ready: Xilinx, Altera
+   \item C simulator with hooks for IO. $\sim$100 MHz
+   \item Option to compile ROM to C. $\sim$1 GHz
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+   \item Test suite for simulation: Icarus, Verilator
+   \item ANS Forth test suite
+   \item 100\% coverage
+\end{itemize}
+\end{frame}
+
+\begin{imageframe}{custom.png}
+  {\bf\LARGE custom ALU ops}
+\end{imageframe}
+
+\begin{frame}
+\begin{itemize}
+   \item multiply
+   \item integer $\sin\theta$
+   \item saturating arithmetic
+   \item CRC-32
+   \item IO acceleration
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{itemize}
+   \item add to Verilog -- 16 unused slots
+   \item add to \mach{basewords.fs}
+   \item use!
 \end{itemize}
 \end{frame}
 
