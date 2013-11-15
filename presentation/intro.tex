@@ -8,6 +8,7 @@
 \usetikzlibrary{arrows,shapes}
 
 \newcommand{\mach}[1]{\texttt{\textbf{#1}}}
+\newcommand{\itwoc}{I$^{\text{2}}$C }
 
 \begin{document}
 \title{J1c}   
@@ -22,7 +23,7 @@
 \tikzstyle{process}=[shape=circle, text centered, text width=1.7cm, draw,minimum size=2em]
 \everymath{\displaystyle}
 
-\begin{imageframe}{j1timing}
+\begin{imageframe}{timing.jpg}
   {\bf\Huge J1}
 \end{imageframe}
 
@@ -45,9 +46,9 @@
 \begin{frame}
 \begin{itemize}
    \item 16-bit instructions, 16-bit data
-   \item stacks are 16 levels deep
+   \item stacks are 32 deep
    \item Von Neumann architecture
-   \item IO instructions
+   \item I/O instructions
 \end{itemize}
 \end{frame}
 
@@ -63,9 +64,46 @@
 \end{itemize}
 \end{frame}
 
+% \begin{frame}[fragile]
+% % \centerline{\includegraphics[width=0.5\textwidth]{simple}}
+% \vskip1cm
+% \footnotesize
+% \begin{verbatim}
+%     : 1+
+%       1 +
+%     ;
+% 
+%     : negate
+%       invert 1+
+%     ;
+% 
+%     : -
+%       negate +
+%     ;
+% \end{verbatim}
+% \end{frame}
+
 \begin{imageframe}{pyramid.jpg}
+\centerline{
   {instructions $\rightarrow$ ANS Forth $\rightarrow$ application}
+  }
 \end{imageframe}
+
+\begin{frame}
+% \centerline{\includegraphics[width=0.5\textwidth]{simple}}
+\vskip1cm
+\footnotesize
+\begin{center}
+\begin{tabular}{cc}
+module & code words \\
+\hline
+Forth core & 80-250 \\
+32-bit arithmetic & 52-166 \\
+\itwoc & 66 \\
+SPI & 52 \\
+\end{tabular}
+\end{center}
+\end{frame}
 
 \begin{imageframe}{6502}
   {\bf\Huge J1c}
@@ -92,8 +130,9 @@
 \begin{frame}
 \begin{itemize}
    \item FPGA-ready: Xilinx, Altera
-   \item C simulator with hooks for IO. $\sim$100 MHz
-   \item Option to compile ROM to C. $\sim$1 GHz
+   \item C simulator with hooks for I/O. $\sim$100 MHz
+   \item option to compile ROM to C. $\sim$1 GHz
+   \item code coverage tracing
 \end{itemize}
 \end{frame}
 
@@ -115,7 +154,7 @@
    \item integer $\sin\theta$
    \item saturating arithmetic
    \item CRC-32
-   \item IO acceleration
+   \item I/O acceleration
 \end{itemize}
 \end{frame}
 
@@ -123,6 +162,7 @@
 \begin{itemize}
    \item add to Verilog -- 16 unused slots
    \item add to \mach{basewords.fs}
+   \item add to C simulator
    \item verify and use!
 \end{itemize}
 \end{frame}
