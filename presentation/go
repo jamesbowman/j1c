@@ -1,0 +1,4 @@
+# python makeall.py || exit
+# ./resize sgi.png && qiv x.png
+# pdflatex graphics.tex
+pdflatex intro.tex
